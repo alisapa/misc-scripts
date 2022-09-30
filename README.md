@@ -12,9 +12,13 @@ Used to convert a directory to a different encoding using `iconv`. Since `iconv`
 
 Usage example:
 ```bash
-recursive-iconv.sh flop flop-converted cp866
+recursive-iconv.sh flop-original flop-converted cp866
 ```
+
+### flop-original.tar.gz
+
+Not a script. A set of files from a floppy disk containing a C++ tutorial (in Russian). Encoding is CP866. Kept only for historic reference, is not much use without the corresponding book, which I do not have.
 
 ### flop-converted.tar.gz
 
-Not a script. A set of files from a floppy disk containing a C++ tutorial (in Russian), converted from CP866 to UTF-8 using `recursive-iconv.sh`. Kept only for historic reference, is not much use without the corresponding book, which I do not have.
+Not a script. Same files as `flop-original.tar.gz`, but converted from CP866 to UTF-8 using `recursive-iconv.sh`. 
