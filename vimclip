@@ -1,0 +1,14 @@
+#!/bin/sh
+# Usage: vimclip
+#    or: vimclip <filename>
+# Creates a temporary file (optionally copying the contents of an existing file
+# into it), opens it in Vim for editing, then copies the result to the
+# clipboard and deletes the temporary file.
+FIL="$(mktemp)"
+if [[ $# -ge 1 ]]; then
+  cp "$1" "$FIL"
+fi
+vim "$FIL"
+xclip -se c -r -i "$FIL"
+xclip -se p -r -i "$FIL"
+rm "$FIL"

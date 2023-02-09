@@ -22,3 +22,13 @@ Not a script. A set of files from a floppy disk containing a C++ tutorial (in Ru
 ### flop-converted.tar.gz
 
 Not a script. Same files as `flop-original.tar.gz`, but converted from CP866 to UTF-8 using `recursive-iconv.sh`. 
+
+### vimclip
+
+Creates a temporary file (optionally copying the contents of an existing file into it), opens it in Vim for editing, then copies the result to the clipboard and deletes the temporary file.
+
+Usage examples:
+```sh
+vimclip
+vimclip example.txt
+```
