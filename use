@@ -1,0 +1,11 @@
+#!/bin/sh
+
+use_editor=$2
+if [[ -z $2 ]]; then
+  if [[ -z $EDITOR ]]; then
+    echo "No editor given and \$EDITOR not set" >/dev/stderr
+    exit 1
+  fi
+  use_editor=$EDITOR
+fi
+sudo $use_editor "/etc/portage/package.use/$1"

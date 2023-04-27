@@ -6,6 +6,25 @@ No promise of correctness. Some of these scripts were only needed once, and ther
 
 ## Descriptions
 
+### use
+
+A very simple script to save typing when changing Gentoo USE flags. Usage:
+
+```sh
+use x11-misc # Edit /etc/portage/package.use/x11-misc with $EDITOR
+use x11-misc vim # Edit /etc/portage/package.use/x11-misc with vim
+```
+
+### vimclip
+
+Creates a temporary file (optionally copying the contents of an existing file into it), opens it in Vim for editing, then copies the result to the clipboard and deletes the temporary file.
+
+Usage examples:
+```sh
+vimclip
+vimclip example.txt
+```
+
 ### recursive-iconv.sh
 
 Used to convert a directory to a different encoding using `iconv`. Since `iconv` does not support in-place conversion (and perhaps you don't *want* to modify the files either), the script works by creating a second, differently-named directory whose subdirectories copy the structure of the first one. Text files are converted, non-text files are copied without change.
@@ -22,13 +41,3 @@ Not a script. A set of files from a floppy disk containing a C++ tutorial (in Ru
 ### flop-converted.tar.gz
 
 Not a script. Same files as `flop-original.tar.gz`, but converted from CP866 to UTF-8 using `recursive-iconv.sh`. 
-
-### vimclip
-
-Creates a temporary file (optionally copying the contents of an existing file into it), opens it in Vim for editing, then copies the result to the clipboard and deletes the temporary file.
-
-Usage examples:
-```sh
-vimclip
-vimclip example.txt
-```
