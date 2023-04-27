@@ -1,4 +1,4 @@
-# Misc Proglets
+# Misc Scripts
 
 A collection of scripts and small programs that served some purpose, but do not warrant their own repository.
 
