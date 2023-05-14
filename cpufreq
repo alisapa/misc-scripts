@@ -1,0 +1,5 @@
+#!/bin/sh
+n=$(nproc)
+for (( i=0 ; i < n ; i++ )); do
+  echo $1 | sudo tee /sys/bus/cpu/devices/cpu${i}/cpufreq/scaling_max_freq
+done
