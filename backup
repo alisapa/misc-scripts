@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e # Exit if any of the mount command failed, do not rsync
+
+MACHINEDIR="" # Directory on the destination disk
+DSTDSKUUID="" # Destination disk UUID
+if [[ -z "$MACHINEDIR" || -z "$DSTDSKUUID" ]]; then
+  echo "Backup directory and backup disk UUID must not be empty." >/dev/stderr
+  exit 1
+fi
+
+mount /dev/mapper/vg0-root /mnt/srcdsk
+mount /dev/mapper/vg0-home /mnt/srcdsk/home
+
+cryptsetup luksOpen "/dev/disk/by-uuid/$DSTDSKUUID" dstdsk
+mount /dev/mapper/dstdsk /mnt/dstdsk
+
+set +e # Unmount all the disks even if the rsync failed
+
+rsync -razhP --del /mnt/srcdsk/ "/mnt/dstdsk/$MACHINEDIR"
+
+echo "Finished backup. Press any key to unmount."
+read anykey
+
+umount /mnt/srcdsk{/home,}
+umount /mnt/dstdsk
+cryptsetup luksClose dstdsk
+
+exit 0
