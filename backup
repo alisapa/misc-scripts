@@ -4,6 +4,7 @@ set -e # Exit if any of the mount command failed, do not rsync
 
 MACHINEDIR="" # Directory on the destination disk
 DSTDSKUUID="" # Destination disk UUID
+LOGFILE="/var/log/last-backup-timestamp" # File to log last backup date to
 if [[ -z "$MACHINEDIR" || -z "$DSTDSKUUID" ]]; then
   echo "Backup directory and backup disk UUID must not be empty." >/dev/stderr
   exit 1
@@ -18,6 +19,7 @@ mount /dev/mapper/dstdsk /mnt/dstdsk
 set +e # Unmount all the disks even if the rsync failed
 
 rsync -razhP --del /mnt/srcdsk/ "/mnt/dstdsk/$MACHINEDIR"
+date '+%s' > $LOGFILE
 
 echo "Finished backup. Press any key to unmount."
 read anykey
